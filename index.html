@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>飞机大战</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>飞机大战</h1>
+        </div>
+        <div class="container">
+            <canvas id='canvas'></canvas>
+        </div>
+        <div class="footer">
+            <p>请尽情享受游戏</p>
+        </div>
+        <script>
+            //全局常量定义
+            const DIRECTION_NORTH = 1;
+            const DIRECTION_RIGHT = 2;
+            const DIRECTION_SOUTH = 3;
+            const DIRECTION_LEFT  = 4;
+
+            //全局画布对象
+            let canvas = null;
+            //初始化函数，在文档ready后加载所有对象
+            function initCanvas() {
+                canvas = new Canvas('canvas')
+                canvas.initStyle()
+                window.onresize = function() {
+                    canvas.onResize()
+                }
+                canvas.onResize()
+            }
+
+            //封装画布
+            class Canvas {
+                constructor(canvasId) {
+                    this.canvasId = canvasId;
+                    this.canvas = document.getElementById(canvasId);
+                }
+
+                //初始化canvas样式
+                initStyle() {
+                    this.canvas.style.backgroundColor = 'blue';
+                }
+
+                //每次resize，重新计算canvas的宽高
+                onResize() {
+                    let vw = window.innerWidth * 0.01;
+                    let vh = window.innerHeight * 0.01;
+                    this.canvas.width = vw * 100;
+                    this.canvas.height = vh * 80;
+                }
+
+                //作为画布，唯一的职责就是绘制所有的Subject
+                showSubjects(subjects) {
+                    
+                }
+            }
+
+            //飞机，敌机，以及子弹等对象
+
+            //他们的共同属性：x,y,img,speed,direction
+
+            class Subject {
+                constructor(x, y, imgSrcList, speed, direction) {
+                    this.x = x;
+                    this.y = y;
+                    this.imgSrcList = imgSrcList;
+                    this.speed = speed;
+                    this.direction = direction;
+                }
+            }
+
+            //飞机
+            class Airplane extends Subject {
+
+            }
+
+            //敌人
+            class Enemy extends Subject {
+
+            }
+
+            class Bullet extends Subject {
+
+            }
+
+            window.onload = initCanvas
+
+        </script>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .header {
+                height: 10vh;
+                background-color: aliceblue;
+            }
+            .header > h1 {
+                height: 100%;
+                text-align: center;
+                line-height: 10vh;
+            }
+            .container {
+                min-height: 80vh;
+            }
+            .footer {
+                height: 10vh;
+                background-color: antiquewhite;
+            }
+            .footer > p {
+                height: 100%;
+                text-align: center;
+                line-height: 10vh;
+            }
+        </style>
+    </body>
+</html>
